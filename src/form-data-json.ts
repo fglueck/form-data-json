@@ -748,8 +748,11 @@ export default class FormDataJson {
     isValidInput: ((input: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLElement) => boolean | undefined) | null = null,
     options: FormDataJsonOptionsToJson | FormDataJsonOptionsFromJson | FormDataJsonOptionsReset | FormDataJsonOptionsClear
   ): any {
-    let inputs = null;
-    if (checkEl.jquery && checkEl.length>1) {
+    let inputs = [];
+    if (Array.isArray(checkEl)) {
+      inputs = checkEl;
+    }
+    else if (checkEl.jquery && checkEl.length>1) {
       const el = null;
       inputs = checkEl.toArray();
     }
